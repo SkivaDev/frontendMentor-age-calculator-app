@@ -1,4 +1,6 @@
 import React from "react";
+import './calculator.scss'
+import icon from '../../assets/images/icon-arrow.svg'
 
 function Calculator() {
   return (
@@ -43,8 +45,10 @@ function Calculator() {
           </div>
         </div>
         <div className="calculator__btn-box">
-          <div className="btn-line"></div>
-          <button className="btn"></button>
+          <div className="line"></div>
+          <button className="btn">
+            <img src={icon} alt="icon-button" />
+          </button>
         </div>
         <div className="calculator__display-box">
           <h1 className="display-item">

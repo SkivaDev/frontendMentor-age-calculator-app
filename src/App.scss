@@ -20,36 +20,27 @@ body {
   color: $txt-color;
 }
 
-li {
-  list-style: none;
-}
-
-a{
-  text-decoration: none;
-  color: $txt-color;
-  font-size: 1rem;
-}
-a:hover {
-  color: $main-color;
-}
-
 img {
   max-width: 100%;
 }
 
-.overflow {
-  @include mobile {
-    background-color: black;
-    display: none;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 30%;
-    opacity: 0.7;
-  }
+mark {
+  color: $main-color;
 }
 
-.active-menu {
-  display: flex !important;
-}
+// .overflow {
+//   @include mobile {
+//     background-color: black;
+//     display: none;
+//     position: absolute;
+//     top: 0;
+//     bottom: 0;
+//     left: 0;
+//     width: 30%;
+//     opacity: 0.7;
+//   }
+// }
+
+// .active-menu {
+//   display: flex !important;
+// }

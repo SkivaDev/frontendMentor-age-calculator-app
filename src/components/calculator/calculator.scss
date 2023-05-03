@@ -1,5 +1,91 @@
 @use "../../scss/" as *;
 
 .calculator {
-  
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 750px;
+    height: 650px;
+    padding: 40px;
+    border-radius: 3% 3% 27% 3%;
+    background-color: $white;
+  }
+  &__form-box {
+    display: flex;
+    justify-content: start;
+    gap: 35px;
+
+    .form__item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .form__label {
+        font-size: 14rem;
+        font-weight: 700;
+        letter-spacing: 4px;
+        color: $smoke-grey;
+      }
+
+      .form__input {
+        width: 130px;
+        height: auto;
+        padding: 12px;
+        border: 1px solid $light-grey;
+        border-radius: 5px;
+        font-size: 25rem;
+        font-weight: 700;
+        color: #000;
+        outline: none;
+        transition: all 0.3s ease;
+
+        &:focus {
+          border-color: $main-color;
+        }
+      }
+
+      .form__alert {
+        color: transparent;
+      }
+    }
+  }
+
+  &__btn-box {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+
+    .line {
+      width: 100%;
+      height: 1px;
+      background-color: $light-grey;
+    }
+    .btn {
+      position: absolute;
+      // right: -70px;
+      right: 0;
+      height: 100px;
+      width: 100px;
+      border: none;
+      border-radius: 50%;
+      background-color: $main-color;
+    }
+  }
+
+  &__display-box {
+    width: 100%;
+    // height: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
 }
