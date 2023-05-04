@@ -65,6 +65,10 @@
         @include mobile {
           font-size: 10rem;
         }
+
+        &.active-error {
+          color: red;
+        }
       }
 
       .form__input {
@@ -89,14 +93,20 @@
         &:focus {
           border-color: $main-color;
         }
+        &.border-error {
+          border-color: red;
+        }
       }
 
       .form__alert {
+        visibility: hidden;
         color: red;
-        color: transparent;
         font-size: 12rem;
         font-weight: 400;
         font-style: italic;
+        &.active-error {
+          visibility: visible;
+        }
       }
     }
   }
@@ -129,6 +139,11 @@
       border: none;
       border-radius: 50%;
       background-color: $main-color;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $black;
+      }
 
       @include tablet {
         height: 75px;
