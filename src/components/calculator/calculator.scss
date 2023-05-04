@@ -42,6 +42,16 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
+      width: 100%;
+      max-width: 130px;
+
+      @include tablet {
+        max-width: 100px;
+      }
+
+      @include mobile {
+        max-width: 70px;
+      }
 
       .form__label {
         font-size: 14rem;
@@ -58,7 +68,8 @@
       }
 
       .form__input {
-        width: 130px;
+        // width: 130px;
+        width: 100%;
         height: auto;
         padding: 12px;
         border: 1px solid $light-grey;
@@ -70,11 +81,9 @@
         transition: all 0.3s ease;
 
         @include tablet {
-          width: 100px;
           font-size: 20rem;
         }
         @include mobile {
-          width: 70px;
           font-size: 16rem;
         }
         &:focus {
@@ -83,7 +92,11 @@
       }
 
       .form__alert {
+        color: red;
         color: transparent;
+        font-size: 12rem;
+        font-weight: 400;
+        font-style: italic;
       }
     }
   }
@@ -97,7 +110,7 @@
 
     @include tablet {
       height: 75px;
-      margin: 20px 0;
+      margin: 0 0 20px 0;
     }
     @include mobile {
       height: 60px;

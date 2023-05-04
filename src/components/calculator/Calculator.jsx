@@ -17,7 +17,7 @@ function Calculator() {
               type="number"
               placeholder="DD"
             />
-            <div className="form__alert"></div>
+            <div className="form__alert">Must be a valid day</div>
           </div>
           <div className="form__item">
             <label className="form__label" htmlFor="month">
@@ -29,7 +29,7 @@ function Calculator() {
               type="number"
               placeholder="MM"
             />
-            <div className="form__alert"></div>
+            <div className="form__alert">Must be a valid moth</div>
           </div>
           <div className="form__item">
             <label className="form__label" htmlFor="year">
@@ -41,7 +41,7 @@ function Calculator() {
               type="number"
               placeholder="YY"
             />
-            <div className="form__alert"></div>
+            <div className="form__alert">Must be in the past</div>
           </div>
         </div>
         <div className="calculator__btn-box">
