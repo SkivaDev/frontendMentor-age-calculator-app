@@ -1,6 +1,12 @@
 import React, { useRef, useState } from "react";
 import "./calculator.scss";
 import icon from "../../assets/images/icon-arrow.svg";
+import {
+  differenceInDays,
+  differenceInMonths,
+  differenceInYears,
+} from 'date-fns';
+
 
 function Calculator() {
   const [valueDay, setValueDay] = useState(0);
@@ -89,40 +95,41 @@ function Calculator() {
     const isValidYear = validateYear(valueYear);
 
     if (isValidDay && isValidMonth && isValidYear) {
-      console.log("Send data");
 
       const currentDay = currentDate.getDate();
       const currentMonth = currentDate.getMonth() + 1; // month start at 0, so we have to add 1
       const currentYear = currentDate.getFullYear();
+      
+      const currentTime = new Date(currentYear, currentMonth - 1, currentDay);
+      console.log("1", currentTime)
+      console.log("2", currentDate)
 
-      // days = currentDay - valueDay;
-      setDays(currentDay - valueDay);
-      // months = currentMonth - valueMonth;
-      setMonths(currentMonth - validateMonth); // 04/05/2023 - 25/01/2021 =
-      // years = currentYear - validateYear;
-      setYears(currentYear - validateYear);
+      console.log(currentDay, currentMonth, currentYear)
+      // Crear una nueva fecha con las constantes de día, mes y año
+      // const birthDate = new Date(valueYear, valueMonth - 1, valueDay);
+      const birthDate = new Date(valueYear, valueMonth - 1, valueDay);
 
-      if (
-        currentMonth < valueMonth ||
-        (currentMonth === valueMonth && currentDay < valueDay)
-      ) {
-        // years--;
-        setYears(years - 1);
-        // months = 12 - valueMonth + currentMonth;
-        setMonths(12 - valueMonth + currentMonth);
-        // days = currentDay + (new Date(currentYear, currentMonth, 0).getDate()) - valueDay;
-        setDays(
-          currentDay +
-            new Date(currentYear, currentMonth, 0).getDate() -
-            valueDay
-        );
-      }
-      if (days < 0) {
-        // months--;
-        setMonths(months - 1);
-        // days = days + new Date(currentYear, currentMonth - 1, 0).getDate();
-        setDays(days + new Date(currentYear, currentMonth - 1, 0).getDate());
-      }
+      console.log(birthDate)
+      // Calcular la diferencia entre la fecha actual y la fecha de nacimiento
+      const ageInYears = differenceInYears(currentDate, birthDate);
+      console.log(ageInYears);
+      const ageInMonths = differenceInMonths(currentDate, birthDate);
+      console.log(ageInMonths);
+      const ageInDays = differenceInDays(currentDate, birthDate);
+      console.log(ageInDays);
+
+      // Mostrar los resultados en otras variables
+      setYears(ageInYears);
+      setMonths(ageInMonths - (ageInYears * 12));
+      // setDays( () => {
+      //     if(ageInDays - (ageInMonths * 30) > 100) {
+      //       return ageInDays - (ageInMonths * 30) - 100 + 2;
+      //     }
+      //     return ageInDays - (ageInMonths * 30);
+      //   }
+      // );
+      setDays(ageInDays % 30);
+      console.log("hello?", ageInDays % 30)
     }
   };
 
