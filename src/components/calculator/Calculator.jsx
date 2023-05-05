@@ -5,8 +5,7 @@ import {
   differenceInDays,
   differenceInMonths,
   differenceInYears,
-} from 'date-fns';
-
+} from "date-fns";
 
 function Calculator() {
   const [valueDay, setValueDay] = useState(0);
@@ -39,7 +38,7 @@ function Calculator() {
       setErrorDay(true);
       setAlertDay("This field is required");
       return false;
-    } else if (value > 31) {
+    } else if (value > 31 || value < 1) {
       inputDayRef.current.focus();
       setValueDay(value);
       setErrorDay(true);
@@ -56,7 +55,7 @@ function Calculator() {
       setErrorMonth(true);
       setAlertMonth("This field is required");
       return false;
-    } else if (value > 12) {
+    } else if (value > 12 || value < 1) {
       inputMonthRef.current.focus();
       setValueMonth(value);
       setErrorMonth(true);
@@ -73,7 +72,7 @@ function Calculator() {
       setErrorYear(true);
       setAlertYear("This field is required");
       return false;
-    } else if (value > currentDate.getFullYear()) {
+    } else if (value > currentDate.getFullYear() || value < 1) {
       inputYearRef.current.focus();
       setValueYear(value);
       setErrorYear(true);
@@ -95,48 +94,21 @@ function Calculator() {
     const isValidYear = validateYear(valueYear);
 
     if (isValidDay && isValidMonth && isValidYear) {
-
-      const currentDay = currentDate.getDate();
-      const currentMonth = currentDate.getMonth() + 1; // month start at 0, so we have to add 1
-      const currentYear = currentDate.getFullYear();
-      
-      const currentTime = new Date(currentYear, currentMonth - 1, currentDay);
-      console.log("1", currentTime)
-      console.log("2", currentDate)
-
-      console.log(currentDay, currentMonth, currentYear)
       // Crear una nueva fecha con las constantes de día, mes y año
-      // const birthDate = new Date(valueYear, valueMonth - 1, valueDay);
       const birthDate = new Date(valueYear, valueMonth - 1, valueDay);
 
-      console.log(birthDate)
+      console.log(birthDate);
       // Calcular la diferencia entre la fecha actual y la fecha de nacimiento
       const ageInYears = differenceInYears(currentDate, birthDate);
-      console.log(ageInYears);
       const ageInMonths = differenceInMonths(currentDate, birthDate);
-      console.log(ageInMonths);
       const ageInDays = differenceInDays(currentDate, birthDate);
-      console.log(ageInDays);
 
       // Mostrar los resultados en otras variables
       setYears(ageInYears);
-      setMonths(ageInMonths - (ageInYears * 12));
-      // setDays( () => {
-      //     if(ageInDays - (ageInMonths * 30) > 100) {
-      //       return ageInDays - (ageInMonths * 30) - 100 + 2;
-      //     }
-      //     return ageInDays - (ageInMonths * 30);
-      //   }
-      // );
+      setMonths(ageInMonths - ageInYears * 12);
       setDays(ageInDays % 30);
-      console.log("hello?", ageInDays % 30)
     }
   };
-
-  // const onSubmitTwo = (e) => {
-  //   e.preventDefault();
-  //   console.log("Send data");
-  // };
 
   const onChangeDay = (e) => {
     setValueDay(e.target.value);
@@ -190,7 +162,9 @@ function Calculator() {
                 type="number"
                 placeholder="MM"
               />
-              <div className={`form__alert ${errorMonth ? "active-error" : ""}`}>
+              <div
+                className={`form__alert ${errorMonth ? "active-error" : ""}`}
+              >
                 {alertMonth}
               </div>
             </div>
